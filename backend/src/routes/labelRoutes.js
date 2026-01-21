@@ -54,8 +54,6 @@ Text:
     return fallbackLabel(text);
   }
 }
-
-// Simple keyword-based fallback labeler
 function fallbackLabel(text) {
   const t = (text || "").toLowerCase();
   if (t.includes("cricket") || t.includes("football") || t.includes("tennis") || t.includes("match") || t.includes("score")) return "Sports";
