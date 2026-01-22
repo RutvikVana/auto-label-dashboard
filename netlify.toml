@@ -4,7 +4,7 @@
   publish = "dist"
 
 [build.environment]
-  VITE_API_URL = "https://auto-label-dashboard-v3f4.onrender.com"
+  VITE_API_URL = "https://auto-label-dashboard-v3f4.onrender.com/api"
 
 [[redirects]]
   from = "/*"
