@@ -37,7 +37,7 @@ Text:
 `;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4.1-mini",
+      model: "gpt-3.5-turbo",
       temperature: 0.2,
       messages: [{ role: "user", content: prompt }]
     });
@@ -87,6 +87,10 @@ router.post("/label", async (req, res) => {
 });
 router.post("/upload", upload.single("file"), async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
     const jsonArray = await csv().fromFile(req.file.path);
 
     const results = [];
@@ -102,24 +106,42 @@ router.post("/upload", upload.single("file"), async (req, res) => {
   }
 });
 router.get("/data", async (req, res) => {
-  const data = await DataModel.find().sort({ createdAt: -1 });
-  res.json(data);
+  try {
+    const data = await DataModel.find().sort({ createdAt: -1 });
+    res.json(data);
+  } catch (err) {
+    console.error("GET DATA ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 router.put("/data/:id", async (req, res) => {
-  const updated = await DataModel.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
-  res.json(updated);
+  try {
+    const updated = await DataModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updated) {
+      return res.status(404).json({ error: "Data not found" });
+    }
+    res.json(updated);
+  } catch (err) {
+    console.error("UPDATE DATA ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 router.get("/stats", async (req, res) => {
-  const total = await DataModel.countDocuments();
-  const pending = await DataModel.countDocuments({ status: "pending" });
-  const approved = await DataModel.countDocuments({ status: "approved" });
-  const edited = await DataModel.countDocuments({ status: "edited" });
+  try {
+    const total = await DataModel.countDocuments();
+    const pending = await DataModel.countDocuments({ status: "pending" });
+    const approved = await DataModel.countDocuments({ status: "approved" });
+    const edited = await DataModel.countDocuments({ status: "edited" });
 
-  res.json({ total, pending, approved, edited });
+    res.json({ total, pending, approved, edited });
+  } catch (err) {
+    console.error("STATS API ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 export default router;

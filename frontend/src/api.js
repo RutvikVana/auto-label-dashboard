@@ -1,14 +1,16 @@
 import axios from "axios";
 
-// During development, connect to local backend
-// In production, use the remote backend URL from environment variable
-const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+// Get API URL from environment variable or default to local backend
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
+// Create axios instance with base URL
 const API = axios.create({
-  baseURL,
+  baseURL: API_URL,
   headers: {
     "Content-Type": "application/json"
   }
 });
 
+// Export both the instance and the base URL for flexibility
+export { API_URL };
 export default API;
