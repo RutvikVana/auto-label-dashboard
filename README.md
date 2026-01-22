@@ -49,22 +49,6 @@ npm run dev
 ```
 
 Open: http://localhost:3000
-
-## 🚀 Deployment
-
-### Backend (Render)
-1. Connect GitHub repo to Render
-2. Set Root Directory: `backend`
-3. Build Command: `npm install`
-4. Start Command: `npm start`
-5. Add Environment Variables
-
-### Frontend (Netlify)
-1. Connect GitHub repo to Netlify
-2. Base Directory: `frontend`
-3. Build Command: `npm run build`
-4. Publish Directory: `frontend/dist`
-
 ## 👨‍💻 Author
 
 Rutvik Vana
