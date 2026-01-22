@@ -1,15 +1,15 @@
-# 🚀 Automated Data Labeling Dashboard
+# Automated Data Labeling Dashboard
 
 A full-stack MERN application that automatically labels text data using AI. Users can upload text or CSV datasets, review AI-generated labels, override them manually, and track labeling progress in a web dashboard.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend:** React.js, Ant Design
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB, Mongoose
 - **AI:** OpenAI API
 
-## ✨ Features
+## Features
 
 - ✅ Auto-label text using AI
 - ✅ Upload CSV datasets
@@ -17,7 +17,7 @@ A full-stack MERN application that automatically labels text data using AI. User
 - ✅ Real-time labeling statistics
 - ✅ MongoDB data storage
 
-## ⚙️ Setup
+##  Setup
 
 ### Backend
 
